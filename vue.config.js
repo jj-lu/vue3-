@@ -7,7 +7,8 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'https://api.imooc-admin.lgdsunday.club/',
+        // target: 'https://api.imooc-admin.lgdsunday.club/',
+        target: 'http://localhost:3004/',
         changeOrigin: true
       }
     }
