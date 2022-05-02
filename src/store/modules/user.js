@@ -1,5 +1,7 @@
 import { login, getUserInfo } from '../../api/sys'
-import { getItem, setItem } from '../../utils/storage'
+import { getItem, removeAllItem, setItem } from '../../utils/storage'
+import router from '../../router/index'
+import { setTimeStamp } from '../../utils/auth'
 import { TOKEN } from '../../constant/index'
 import md5 from 'md5'
 
@@ -25,10 +27,17 @@ export default {
         login({ username, password: md5(password) })
           .then(data => {
             this.commit('user/setToken', data.token)
+            setTimeStamp()
             resolve()
           })
           .catch(err => reject(err))
       })
+    },
+    logout() {
+      this.commit('user/setToken', '')
+      this.commit('user/setUserInfo', {})
+      removeAllItem()
+      router.push('/login')
     },
     async getUserInfo(context) {
       const res = await getUserInfo()
