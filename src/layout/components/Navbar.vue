@@ -1,7 +1,9 @@
 <template>
   <div class="navbar">
     <Hamburger class="hamburger-container"></Hamburger>
+    <breadcrumb class="breadcrumb-container"></breadcrumb>
     <div class="right-menu">
+      <LangSelect class="right-menu-item hover-effect"></LangSelect>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <el-avatar
@@ -30,6 +32,8 @@
 <script setup>
 // import {ref} from 'vue'
 import Hamburger from '../../components/hamburger'
+import breadcrumb from '../../components/breadcrumb'
+import LangSelect from '../../components/LangSelect'
 </script>
 
 <style lang="scss" scoped>
@@ -39,6 +43,9 @@ import Hamburger from '../../components/hamburger'
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  .breadcrumb-container {
+    float: left;
+  }
   .hamburger-container {
     line-height: 46px;
     height: 100%;
@@ -54,6 +61,16 @@ import Hamburger from '../../components/hamburger'
     align-items: center;
     float: right;
     padding-right: 16px;
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
   }
   ::v-deep .avatar-container {
     cursor: pointer;
